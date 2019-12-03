@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     @IBAction func saveClicked(_ sender: Any) {
         UserDefaults.standard.set(nameTextField.text!, forKey: "name")
         UserDefaults.standard.set(birthdayTextField.text!, forKey: "birthday")
-//        UserDefaults.standard.synchronize()
+        UserDefaults.standard.synchronize()
         
        setvaluesLabel()
     }
@@ -42,6 +42,21 @@ class ViewController: UIViewController {
         //nameLabel.text = "Name: \(storedName as! String)"
         //birthdayLabel.text = "Birthday: \(storedBirthday as! String)"
         
+    }
+    @IBAction func deleteClicked(_ sender: Any) {
+        let storedName = UserDefaults.standard.object(forKey: "name")
+        let storedBirthday = UserDefaults.standard.object(forKey: "birthday")
+        
+        if(storedName as? String != nil){
+           UserDefaults.standard.removeObject(forKey: "name")
+            nameLabel.text = "Name: "
+        }
+        
+        if(storedBirthday as? String != nil){
+            UserDefaults.standard.removeObject(forKey: "birthday")
+            birthdayLabel.text = "Birthday: "
+        }
+       
     }
     
 }
